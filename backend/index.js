@@ -7,7 +7,8 @@ console.log(process.env.NODE_ENV)
 const express = require('express');
 const morgan =require('morgan');
 const multer = require('multer')
-const path = require('path')
+const path = require('path');
+const cors  = require('cors');
 //
 const connectDB = require('./database')
 const app = express();
@@ -38,7 +39,9 @@ const storage = multer.diskStorage({
 
 app.use(multer({ storage}).single('image'));
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json())
+app.use(express.json());
+app.use(cors());
+
 
 
 

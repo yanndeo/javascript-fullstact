@@ -28,17 +28,18 @@ router.route('/')
 
         .post(async(req, res)=>{
 
-            const {title, author, isbn} =req.body
+            const { title, author, isbn } = req.body;
+            const imagePath = `/uploads/${req.file.filename}`
+            const newBook = new Book({ title, author, isbn, imagePath });
 
             try {
-                const newBook =  new Book({ title, author, isbn});
-                                await newBook.save();
-                res.json({ newBook })
+                await newBook.save();
+                res.json({ message: 'Book Saved' })
 
             } catch (error) {
                 console.log('post_books', error)
-
             }
+
         });
 
 

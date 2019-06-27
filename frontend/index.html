@@ -4,8 +4,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
     <title>JAVASCRIPT-FULLSTACK!</title>
     <link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
@@ -23,25 +21,30 @@
       <div class="row">
 
           <div class="col-md-4">
+
           <form class="card card-body" id="book-form">
+
             <div class="form-group">
-                <input type="text" name="title" class="form-control" placeholder="Book title"  autofocus>
+                <input type="text" id="title" class="form-control" name="title" value ="" placeholder="Book title"  autofocus>
             </div>
+
             <div class="form-group">
-                <input type="text" name="author" class="form-control" placeholder="Author"  >
+                <input type="text" id="author" class="form-control" name="author" placeholder="Author"  >
             </div>
+
             <div class="form-group">
-                <input type="text" name="isbn" class="form-control" placeholder="ISBN"  >
+                <input type="text" id="isbn" class="form-control"  name="isbn"placeholder="ISBN"  >
             </div>
 
 
             <div class="input-group mb-3">
               <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="image">
+                  <input type="file" class="custom-file-input" id="image" name="image"> 
                   <label for="image" class="custom-file-label">Choose Image </label>
               </div>
             </div>
-            <button class="btn btn-primary "> SAVE BOOK </div>
+
+            <button class="btn btn-primary"> SAVE BOOK </div>
           </form>
           </div>
 

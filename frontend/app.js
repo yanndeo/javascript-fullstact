@@ -1,5 +1,6 @@
 import './styles/app.css'
-import  BookService from './services/BookService';
+import UI from './UI';
+
 
 /**
  * Generique function 
@@ -10,7 +11,13 @@ const getFormElement=(elmntID)=>{
    return document.getElementById(elmntID);
 }
 
-
+/**
+ * 
+ */
+document.addEventListener("DOMContentLoaded" , ()=>{
+    const ui = new UI();
+    ui.renderBooks();
+});
 
 
 /**
@@ -36,14 +43,16 @@ document.getElementById('book-form')
                 formData.append('image', image)
 
             console.log(formData)
+            const ui = new UI();
 
-
-            const bookService = new BookService();
-
-            bookService.postBook(formData);
+            ui.AddNewBook(formData)
             
 }); 
 
 
 
 
+/**
+ * L' DOMContentLoadedévénement se déclenchera dès que la hiérarchie du DOM sera entièrement construite. 
+ *  loads era lorsque le chargement de toutes les images et de tous les sous-cadres sera terminé.
+ */

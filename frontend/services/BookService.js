@@ -7,7 +7,7 @@ class BookService {
     }
 
     /**
-     * 
+     * All Books
      */
     async getBooks(){
         const response = await fetch(this.URI,{
@@ -25,7 +25,7 @@ class BookService {
     }
 
     /**
-     * 
+     * Insert new Book
      */
     async postBook(book){
         const res = await fetch(this.URI, {
@@ -40,7 +40,7 @@ class BookService {
     }
 
     /**
-     * 
+     *  Delete a book
      */
      async deleteBook(bookID){
         const res = await fetch(`${this.URI}/${bookID}`, {

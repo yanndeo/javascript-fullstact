@@ -6,8 +6,10 @@ const bookService =  new BookService();
 
 class UI {
 
-
-    async renderBooks(){
+    /**
+     * fetch book list
+     */
+    static async renderBooks(){
 
       const books = await bookService.getBooks();
       let booksCardcontainer = document.getElementById('books-cards');
@@ -44,23 +46,58 @@ class UI {
     
     }
 
-
-    async AddNewBook(book){
+    /**
+     * Add Bood
+     * use service
+     */
+    static async addNewBook(book){
 
         await bookService.postBook(book);
 
-        this.ClearFormBook();
+        this.clearFormBook();
 
-        this.getBooks();
-    }
+        this.renderBooks();
 
-
-    DeleteBook(){
 
     }
 
-    ClearFormBook(){
+    /**
+     * Suppression
+     * use service
+     */
+    static async deleteBook(bookID){
+        await bookService.deleteBook(bookID);
+
+        this.renderBooks();
+    }
+
+
+
+    /**
+     * Clear Form
+     */
+    static clearFormBook(){
         document.getElementById("book-form").reset();
+    }
+
+
+
+    /**
+     * 
+     */
+    static renderMessage(message, colorMessage, secondsToRemove){
+        const div =  document.createElement('div');
+        div.className = `alert alert-${colorMessage} message` ;
+        div.appendChild(document.createTextNode(message));
+
+        const container = document.querySelector('.col-md-4');
+        const bookForm = document.querySelector('#book-form');
+
+        container.insertBefore(div, bookForm);
+
+        setTimeout(()=> {
+            document.querySelector('.message').remove();
+        }, secondsToRemove )
     }
 
 

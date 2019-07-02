@@ -1,5 +1,7 @@
 const { Router} = require('express');
 const router = Router();
+const { unlink } = require('fs-extra');
+const path = require('path');
 const Book = require('../models/Books');
 
 
@@ -17,7 +19,7 @@ router.route('/')
       .get( async(req, res)=>{
 
             try {
-                const books = await Book.find();
+                const books = await Book.find().sort({ 'created_at': -1 });
                 console.log(books)
                 res.json(books )
 
@@ -51,8 +53,11 @@ router.route('/')
 router.delete('/:bookID', async (req, res)=>{
 
         try {
-            await Book.findByIdAndDelete(req.params.bookID);
-            res.json({ message: 'book deleted' })
+           const book= await Book.findByIdAndDelete(req.params.bookID);
+
+           await unlink(path.resolve('./backend/public/'+ book.imagePath ))
+
+          res.json({ message: 'book deleted' })
 
         } catch (error) {
             console.log('delete_book', error)

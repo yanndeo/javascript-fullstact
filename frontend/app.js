@@ -1,6 +1,8 @@
 import './styles/app.css'
 import UI from './UI';
 
+const ui = new UI();
+
 
 /**
  * Generique function 
@@ -15,8 +17,8 @@ const getFormElement=(elmntID)=>{
  * 
  */
 document.addEventListener("DOMContentLoaded" , ()=>{
-    const ui = new UI();
-    ui.renderBooks();
+    //const ui = new UI();
+    UI.renderBooks();
 });
 
 
@@ -26,7 +28,7 @@ document.addEventListener("DOMContentLoaded" , ()=>{
  * which contain all method request 
  * to the server
  */
-document.getElementById('book-form')
+getFormElement('book-form')
         .addEventListener('submit', (e)=>{
 
             let title = getFormElement('title').value ;
@@ -43,11 +45,47 @@ document.getElementById('book-form')
                 formData.append('image', image)
 
             console.log(formData)
-            const ui = new UI();
 
-            ui.AddNewBook(formData)
+            //const ui = new UI();
+            UI.addNewBook(formData)
+
+            UI.renderMessage('New book Added', 'success', 3200)
             
 }); 
+
+
+
+/**
+ * 
+ */
+getFormElement('books-cards').addEventListener('click', e=>{
+
+    if(e.target.classList.contains('delete')){
+        e.preventDefault();
+        console.log(e.target.getAttribute('_id'));
+
+        const book_id = e.target.getAttribute('_id');
+
+        UI.deleteBook(book_id);
+
+        UI.renderMessage('Book removed', 'danger', 2000);
+
+       // ui.DeleteBook(book_id)
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
